@@ -1,0 +1,18 @@
+Name: Иванов Иван Иванович
+Birth date: 2003
+Group: 153546
+Average mark: 7.133333
+Inf. marks: 9 10 9 
+~
+Name: Петров П. П.
+Birth date: 2003
+Group: 153546
+Average mark: 5.883333
+Inf. marks: 6 3 4 
+~
+Name: Шкундич Пидорас
+Birth date: 2003
+Group: 153546
+Average mark: 4.800000
+Inf. marks: 0 0 0 
+~

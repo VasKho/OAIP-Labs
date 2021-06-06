@@ -1,0 +1,99 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+int kol_slov(string);
+int max_length(string);
+void print_arr(char**, int, int);
+void sort_arr(char**, int);
+
+int main()
+{
+    setlocale(0, "");
+    int ln = 0;
+    string line;
+    char** store;
+    cout << "Введите строку: ";
+    getline(cin, line);
+    line += " ";
+    int kol = kol_slov(line);
+    int len = max_length(line);
+    store = new char* [kol];
+    for (int i = 0; i < kol; i++) *(store + i) = new char[len];
+    for (int m = 0; m < kol; m++)
+    {
+        for (int n = 0; n < len; n++)
+        {
+            if (line[ln] != (char)(32)) store[m][n] = line[ln++];
+            else
+            {
+                store[m][n] = (char)(32);
+            }
+        }
+        ln++;
+    }
+    sort_arr(store, kol);
+    print_arr(store, kol, len);
+    for (int i = 0; i < kol; i++) delete[]store[i];
+    delete[]store;
+    return 0;
+}
+
+int kol_slov(string a)      //подсчёт количества слов в строке
+{
+    int k = 0;
+    for (int i = 0; i < a.length(); i++)
+    {
+        if (a[i] == (char)(32)) k++;
+    }
+    return k;
+}
+
+int max_length(string a)        //нахождение самого длинного слова в строке
+{
+    int k=0, max = 0;
+    static int i1 = 0;
+    for (int i = 0; a[i] != (char)(32); i++) max = i;
+    max++;
+    for (int q = 0; q != kol_slov(a); q++)
+    {
+        for (; i1 < a.length(); i1++)
+        {
+            if (a[i1] != (char)(32)) k++;
+            else
+            {
+                i1++;
+                break;
+            }
+        }
+        if (k > max) max = k;
+        k = 0;
+    }
+    return max;
+}
+
+void print_arr(char** a, int i, int j)      //вывод массива
+{
+    for (int m = 0; m < i; m++)
+    {
+        for (int n = 0; n < j; n++)
+        {
+            cout << a[m][n];
+        }
+        cout << endl;
+    }
+}
+
+void sort_arr(char** a, int i)       //сортировка массива
+{
+    for (int sch = 0; sch < i - 1; sch++)
+    {
+        for (int m = 0; m < i - sch - 1; m++)
+            if (strcmp(a[m], a[m + 1]) > 0)
+            {
+                swap(a[m], a[m + 1]);
+            }    
+    }
+}
